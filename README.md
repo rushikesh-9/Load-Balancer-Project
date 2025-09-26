@@ -33,16 +33,17 @@ It installs and configures **Apache web servers** and an **HAProxy load balancer
 
 ------------------------------------------------------------
 ---
-# Playbook for Load Balancer Project using Ansible
+## Playbook
 
-# Setup Web Servers
+```yaml
+---
 - name: Setup Apache Web Servers
   hosts: web_servers
   become: yes
   roles:
     - apache
     - firewall
-# Setup Load Balancer
+
 - name: Setup HAProxy Load Balancer
   hosts: balancer
   become: yes
@@ -51,7 +52,7 @@ It installs and configures **Apache web servers** and an **HAProxy load balancer
       - name: web-server-1
         ip: 192.168.222.130
         port: 80
-      - name: web-server-2
+      - name: web-server-3
         ip: 192.168.222.131
         port: 80
     web_frontend:
@@ -60,6 +61,7 @@ It installs and configures **Apache web servers** and an **HAProxy load balancer
   roles:
     - haproxy
     - firewall
+
 ---------------------------------------------------------------------
 
 👨‍💻 Author
