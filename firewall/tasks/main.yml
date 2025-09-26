@@ -1,0 +1,17 @@
+---
+# tasks file for firewall
+- name: Enable multiple firewalld services
+  ansible.posix.firewalld:
+    service: "{{ item }}"
+    permanent: true
+    state: enabled
+  loop:
+    - http
+
+- name: Staring firewall
+  service:
+      name: "{{ item }}"
+      state: restarted
+      enabled: true
+  loop: 
+    - firewalld
