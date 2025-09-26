@@ -2,7 +2,6 @@
 
 This project demonstrates how to automate the setup of a load balancer architecture using **Ansible**.  
 It installs and configures **Apache web servers** and an **HAProxy load balancer** to distribute traffic across multiple backend servers.  
-Firewall rules are also applied to allow HTTP/HTTPS traffic.
 
 ----------------------------------------------------------------
 
@@ -52,7 +51,7 @@ Firewall rules are also applied to allow HTTP/HTTPS traffic.
       - name: web-server-1
         ip: 192.168.222.130
         port: 80
-      - name: web-server-3
+      - name: web-server-2
         ip: 192.168.222.131
         port: 80
     web_frontend:
