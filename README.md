@@ -30,9 +30,38 @@ Firewall rules are also applied to allow HTTP/HTTPS traffic.
 2. Update the inventory file with your server details.
 3. Run the playbook
 
-      ansible-playbook -i inventory lb_config.yml
+      ansible-playbook -i inventory playbook.yml
 
 ------------------------------------------------------------
+---
+# Playbook for Load Balancer Project using Ansible
+
+# Setup Web Servers
+- name: Setup Apache Web Servers
+  hosts: web_servers
+  become: yes
+  roles:
+    - apache
+    - firewall
+# Setup Load Balancer
+- name: Setup HAProxy Load Balancer
+  hosts: balancer
+  become: yes
+  vars:
+    web_backend:
+      - name: web-server-1
+        ip: 192.168.222.130
+        port: 80
+      - name: web-server-3
+        ip: 192.168.222.131
+        port: 80
+    web_frontend:
+      server: load-balancer
+      port: 80
+  roles:
+    - haproxy
+    - firewall
+---------------------------------------------------------------------
 
 👨‍💻 Author
 
