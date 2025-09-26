@@ -1,0 +1,18 @@
+---
+# tasks file for apache
+- name: Installing Apache Service
+  dnf: 
+    name: httpd 
+    state: present
+
+- name: Adding Html Template
+  template: 
+      src: index.html.j2
+      dest: /var/www/html/index.html
+
+
+- name: Starting Apache Service
+  service: 
+     name: httpd
+     state: restarted
+     enabled: true
